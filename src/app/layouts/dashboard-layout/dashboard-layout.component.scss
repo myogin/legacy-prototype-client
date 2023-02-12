@@ -1,0 +1,85 @@
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+
+  .sidebar {
+    background-color: #fafafa;
+    height: 100vh;
+    min-width: 250px;
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 2rem 2rem 2rem;
+      color: #0f393a;
+      font-weight: 700;
+      justify-content: center;
+      font-size: 1.5rem;
+
+      .logo-icon {
+        margin-left: auto;
+        width: 24px;
+        display: flex;
+        align-items: center;
+        color: #abb0bd;
+      }
+    }
+
+    .sidebar-menu {
+      .menu-list {
+        list-style: none;
+        color: #abb0bd;
+        a {
+          position: relative;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          padding: 15px 0;
+          padding-left: 2.5rem;
+
+          &:hover {
+            color: #0f393a;
+          }
+          &:hover::before {
+            background-color: #0f393a;
+          }
+          &:before {
+            content: "";
+            height: 80%; //You can change this if you want smaller/bigger borders
+            width: 2px;
+
+            position: absolute;
+            left: 0;
+            top: 50%; // If you want to set a smaller height and center it, change this value
+            transform: translateY(-50%);
+            background-color: transparent; // The color of
+          }
+        }
+        a.active {
+          &::before {
+            background-color: #0f393a;
+          }
+        }
+        .icon-menu {
+          max-width: 20px;
+          margin-right: 0.5rem;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .sidebar-line {
+      display: block;
+      width: 75%;
+      height: 1px;
+      background-color: #e9eaee;
+      margin: 1rem auto;
+    }
+  }
+
+  .main {
+    margin: 1.5rem;
+  }
+}
