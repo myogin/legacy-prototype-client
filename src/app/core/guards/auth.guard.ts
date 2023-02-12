@@ -1,4 +1,4 @@
-import { Injectable, resolveForwardRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { NbAuthService } from '@nebular/auth';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,11 +24,12 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | any {
     // return this.authService.isAuthenticated();
-    return this.authService.isAuthenticated().subscribe((res) => {
-      if (!res) {
-        this.router.navigate(['/auth/login']);
-      }
-      return true;
-    });
+    return this.authService.isAuthenticated().pipe(
+      tap((authenticated) => {
+        if (!authenticated) {
+          this.router.navigate(['auth/login']);
+        }
+      })
+    );
   }
 }

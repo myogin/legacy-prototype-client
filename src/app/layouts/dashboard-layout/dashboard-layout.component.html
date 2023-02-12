@@ -8,34 +8,68 @@
     <div class="sidebar-menu">
       <ul>
         <li class="menu-list">
-          <a href="" class="active"
+          <a routerLink="/dashboard" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="grid"></nb-icon>Dashboard</a
           >
         </li>
         <li class="menu-list">
-          <a href=""
+          <a routerLink="/agent" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="person-add"></nb-icon>Agent</a
           >
         </li>
         <li class="menu-list">
-          <a href=""
+          <a routerLink="/submmit" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="layers"></nb-icon>Submmit</a
           >
         </li>
         <li class="menu-list">
-          <a href=""
+          <a routerLink="/payroll" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="book-open"></nb-icon>Payroll</a
           >
         </li>
         <li class="menu-list">
-          <a href=""
+          <a routerLink="/staff" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="people"></nb-icon>Staff</a
           >
         </li>
       </ul>
     </div>
+
+    <div class="sidebar-footer">
+      <a (click)="logout()">
+        Something<nb-icon class="logo-icon" icon="log-out"></nb-icon>
+      </a>
+    </div>
   </div>
   <div class="main">
-    <router-outlet></router-outlet>
+    <div class="main__header">
+      <div class="main__header-title">Title</div>
+      <div class="main__header-setting">
+        <button class="btn-setting" (click)="settingOpen()">
+          <nb-icon
+            class="btn-setting__icon"
+            [ngClass]="{ active: setting }"
+            icon="settings"
+          ></nb-icon>
+        </button>
+        <div class="setting__container" [ngClass]="{ 'opacity-1': setting }">
+          <button class="setting__container-btn">
+            <nb-icon class="icon" icon="person"></nb-icon>Profile
+          </button>
+          <button class="setting__container-btn">
+            <nb-icon class="icon" icon="settings-2"></nb-icon>Account Settings
+          </button>
+          <button class="setting__container-btn">
+            <nb-icon class="icon" icon="bell"></nb-icon>Disable Alerts
+          </button>
+          <button class="setting__container-btn" (click)="logout()">
+            <nb-icon class="icon" icon="log-out"></nb-icon>Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="main__content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

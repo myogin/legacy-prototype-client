@@ -9,7 +9,7 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 
@@ -29,6 +29,27 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/page/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'agent',
+        loadChildren: () =>
+          import('./features/page/agent/agent.module').then(
+            (m) => m.AgentModule
+          ),
+      },
+      {
+        path: 'payroll',
+        loadChildren: () =>
+          import('./features/page/payroll/payroll.module').then(
+            (m) => m.PayrollModule
+          ),
+      },
+      {
+        path: 'staff',
+        loadChildren: () =>
+          import('./features/page/staff/staff.module').then(
+            (m) => m.StaffModule
           ),
       },
     ],

@@ -82,3 +82,15 @@ textarea {
 .active {
   color: var(--color-green);
 }
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.opacity-1 {
+  opacity: 1 !important;
+}
