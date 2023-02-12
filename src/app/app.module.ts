@@ -11,7 +11,7 @@ import {
   NbIconModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   NbAuthJWTToken,
   NbAuthModule,
@@ -19,6 +19,7 @@ import {
 } from '@nebular/auth';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { JwtInterceptorService } from './core/interceptor/jwt-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, DashboardLayoutComponent, LoginLayoutComponent],
@@ -81,7 +82,13 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
       },
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
