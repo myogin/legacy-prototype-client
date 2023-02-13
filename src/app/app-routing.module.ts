@@ -10,6 +10,7 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 import { AuthGuard } from './core/guards/auth.guard';
+import { RoleGuard } from './core/guards/role.guard';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 
@@ -37,6 +38,8 @@ const routes: Routes = [
           import('./features/page/agent/agent.module').then(
             (m) => m.AgentModule
           ),
+        canActivate: [RoleGuard],
+        data: { permission: ['admin', 'agent'] },
       },
       {
         path: 'payroll',
@@ -44,6 +47,8 @@ const routes: Routes = [
           import('./features/page/payroll/payroll.module').then(
             (m) => m.PayrollModule
           ),
+        canActivate: [RoleGuard],
+        data: { permission: ['admin', 'staff'] },
       },
       {
         path: 'staff',
@@ -51,6 +56,8 @@ const routes: Routes = [
           import('./features/page/staff/staff.module').then(
             (m) => m.StaffModule
           ),
+        canActivate: [RoleGuard],
+        data: { permission: ['admin'] },
       },
     ],
   },
@@ -90,6 +97,11 @@ const routes: Routes = [
         ],
       },
     ],
+  },
+  {
+    path: '**',
+    component: DashboardLayoutComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
