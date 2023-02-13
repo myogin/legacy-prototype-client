@@ -12,7 +12,7 @@
             ><nb-icon class="icon-menu" icon="grid"></nb-icon>Dashboard</a
           >
         </li>
-        <li class="menu-list">
+        <li class="menu-list" *ngIf="['admin', 'agent'].includes(userRole)">
           <a routerLink="/agent" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="person-add"></nb-icon>Agent</a
           >
@@ -22,12 +22,12 @@
             ><nb-icon class="icon-menu" icon="layers"></nb-icon>Submmit</a
           >
         </li>
-        <li class="menu-list">
+        <li class="menu-list" *ngIf="['admin', 'staff'].includes(userRole)">
           <a routerLink="/payroll" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="book-open"></nb-icon>Payroll</a
           >
         </li>
-        <li class="menu-list">
+        <li class="menu-list" *ngIf="['admin'].includes(userRole)">
           <a routerLink="/staff" routerLinkActive="active"
             ><nb-icon class="icon-menu" icon="people"></nb-icon>Staff</a
           >

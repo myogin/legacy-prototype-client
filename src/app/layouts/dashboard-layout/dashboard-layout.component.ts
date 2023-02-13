@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbTokenService } from '@nebular/auth';
+import { RoleService } from 'src/app/core/services/role.service';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -9,9 +10,16 @@ import { NbTokenService } from '@nebular/auth';
 })
 export class DashboardLayoutComponent implements OnInit {
   setting: boolean = false;
-  constructor(private nbTokenService: NbTokenService, private router: Router) {}
+  userRole: string | any = '';
+  constructor(
+    private nbTokenService: NbTokenService,
+    private router: Router,
+    private role: RoleService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userRole = this.role.userRole;
+  }
 
   settingOpen() {
     this.setting = !this.setting;
@@ -19,11 +27,6 @@ export class DashboardLayoutComponent implements OnInit {
 
   logout(): void {
     console.log('logout');
-
-    // this.authService.logout('email').subscribe((res) => {
-    //   res.isSuccess() && this.router.navigate(['/auth']);
-    // });
-
     this.nbTokenService.clear().subscribe((res) => {
       this.router.navigate(['/auth']);
     });

@@ -12,7 +12,7 @@ export class RoleService {
       .onTokenChange()
       .subscribe((token: NbAuthJWTToken | any) => {
         if (token.isValid()) {
-          this.userRole = token.getPayload().scopes; // here we receive a payload from the token and assigns it to our `user` variable
+          this.userRole = token.getPayload().scopes[0]; // here we receive a payload from the token and assigns it to our `user` variable
         }
       });
   }
